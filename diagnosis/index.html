@@ -119,14 +119,16 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="googlebot" content="noindex, nofollow, noarchive">
 <style>
+  :root { --preview-h: 48px; --sticky-bottom: var(--preview-h); }
   .preview-bar {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
-    background: #3a3a3a; color: #fff; font-size: 12px; line-height: 1.5;
-    padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
-    text-align: center; font-family: "Noto Sans JP", sans-serif;
+    min-height: var(--preview-h); display: flex; align-items: center; justify-content: center;
+    background: #3a3a3a; color: #fff; font-size: 11px; line-height: 1.45;
+    padding: 5px 14px calc(5px + env(safe-area-inset-bottom));
+    text-align: center; font-family: "Noto Sans JP", sans-serif; letter-spacing: 0;
   }
   .preview-bar strong { color: #ffd479; margin-right: 6px; }
-  body { padding-bottom: 64px; }
+  body { padding-bottom: calc(var(--cta-h, 0px) + var(--preview-h) + 16px) !important; }
 </style>
 </head>
 <body>
