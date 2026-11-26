@@ -115,15 +115,15 @@
   .fv .label { display: inline-block; background: var(--teal); color: #fff; font-weight: 700; font-size: 15px; padding: 8px 18px; letter-spacing: .08em; }
   .fv h1 { font-size: 38px; line-height: 1.45; font-weight: 900; margin: 18px 0 0; letter-spacing: .06em; }
   .fv-visual { position: relative; margin-top: 32px; }
-  .fv .photo { height: 380px; }
+  .fv .photo { aspect-ratio: 3 / 2; }  /* 生成画像は横3:縦2。女性と男性の顔が切れないよう全体を見せる */
   .fv .photo .fig.a { left: 22%; }
   .fv .photo .fig.b { right: 22%; }
-  .fv-chips { position: absolute; left: 12px; top: 52px; display: grid; gap: 8px; z-index: 5; }
+  .fv-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 16px 16px 0; background: var(--white); }
   .fv-chips span {
-    display: block; background: rgba(255,255,255,.95); box-shadow: 0 4px 14px rgba(29,36,39,.08);
-    font-size: 13px; font-weight: 700; padding: 8px 14px; border-left: 4px solid var(--teal); letter-spacing: .02em;
+    display: block; background: var(--teal-tint); color: var(--teal-deep);
+    font-size: 13px; font-weight: 700; padding: 6px 12px; border-left: 4px solid var(--teal); letter-spacing: .02em;
   }
-  .fv-bottom { background: var(--white); padding: 28px 0 56px; text-align: center; }
+  .fv-bottom { background: var(--white); padding: 20px 0 56px; text-align: center; }
   .fv .sub { font-size: 16px; font-weight: 700; margin-bottom: 22px; }
 
   /* ---------- 2. 生活シーン（ティールの帯） ---------- */
@@ -254,7 +254,7 @@
 
   @media (min-width: 720px) {
     .fv h1 { font-size: 54px; }
-    .fv .photo { height: 520px; }
+    .fv-visual { max-width: 960px; margin-left: auto; margin-right: auto; }
     h2 { font-size: 32px; }
     .pillars, .courses, .ways { grid-template-columns: repeat(3, 1fr); }
     .scenes { grid-template-columns: repeat(3, 1fr); }
