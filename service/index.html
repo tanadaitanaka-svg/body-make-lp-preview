@@ -29,16 +29,16 @@
 <style>
   :root {
     --white: #ffffff;
-    --mist: #f3f6f7;
-    --ink: #1d2427;
-    --muted: #5f6b70;
-    --line: #dfe6e8;
-    --teal: #1e7d70;
-    --teal-deep: #155f55;
-    --teal-soft: #9ccbc4;
-    --teal-tint: #e4f1ef;
-    --slate: #3a464c;
-    --gold: #b8923a;
+    --mist: #eef5f4;
+    --ink: #111a1d;
+    --muted: #4a575c;
+    --line: #d3e0e1;
+    --teal: #0b8a7a;
+    --teal-deep: #075e54;
+    --teal-soft: #2fa494;
+    --teal-tint: #dcf1ed;
+    --slate: #1f2c33;
+    --gold: #d6981a;
     --line-green: #06c755;
     --radius: 6px;
     --cta-h: 76px;
@@ -76,6 +76,7 @@
   }
   .photo .fig { position: absolute; bottom: 0; width: 22%; aspect-ratio: 1 / 2.1; background: rgba(30, 125, 112, .16); border-radius: 999px 999px 0 0; }
   .photo .fig.b { width: 25%; aspect-ratio: 1 / 2.3; }
+  .photo .ph-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 3; }
   .photo .cap {
     position: absolute; left: 12px; top: 12px; z-index: 1; padding: 4px 10px; border-radius: 4px;
     background: rgba(255, 255, 255, .9); font-size: 11px; color: var(--muted); line-height: 1.5; letter-spacing: 0;
@@ -109,15 +110,15 @@
   .head-link { font-size: 13px; font-weight: 700; color: var(--teal); text-decoration: none; border: 1.5px solid var(--teal); border-radius: 4px; padding: 5px 12px; }
 
   /* ---------- 1. ファーストビュー ---------- */
-  .fv { padding: 40px 0 0; background: linear-gradient(180deg, #eef4f5 0%, #f7fafa 100%); overflow: hidden; }
+  .fv { padding: 40px 0 0; background: linear-gradient(180deg, #dcf1ed 0%, #f2faf8 100%); overflow: hidden; }
   .fv-copy { text-align: center; }
-  .fv .label { display: inline-block; background: var(--teal-soft); color: #fff; font-weight: 700; font-size: 15px; padding: 8px 18px; letter-spacing: .08em; }
+  .fv .label { display: inline-block; background: var(--teal); color: #fff; font-weight: 700; font-size: 15px; padding: 8px 18px; letter-spacing: .08em; }
   .fv h1 { font-size: 38px; line-height: 1.45; font-weight: 900; margin: 18px 0 0; letter-spacing: .06em; }
   .fv-visual { position: relative; margin-top: 32px; }
   .fv .photo { height: 380px; }
   .fv .photo .fig.a { left: 22%; }
   .fv .photo .fig.b { right: 22%; }
-  .fv-chips { position: absolute; left: 12px; top: 52px; display: grid; gap: 8px; z-index: 2; }
+  .fv-chips { position: absolute; left: 12px; top: 52px; display: grid; gap: 8px; z-index: 5; }
   .fv-chips span {
     display: block; background: rgba(255,255,255,.95); box-shadow: 0 4px 14px rgba(29,36,39,.08);
     font-size: 13px; font-weight: 700; padding: 8px 14px; border-left: 4px solid var(--teal); letter-spacing: .02em;
@@ -142,9 +143,9 @@
 
   /* ---------- 3. 3本柱 ---------- */
   .pillars { display: grid; gap: 20px; }
-  .pillar { background: var(--mist); padding: 28px 24px; }
+  .pillar { background: var(--teal-tint); padding: 28px 24px; border-top: 4px solid var(--teal); }
   .pillar .num { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--gold); font-size: 13px; letter-spacing: .12em; }
-  .pillar .label { font-size: 13px; font-weight: 700; color: var(--teal); margin: 4px 0 6px; }
+  .pillar .label { font-size: 13px; font-weight: 700; color: var(--teal-deep); margin: 4px 0 6px; }
   .pillar h3 { font-size: 20px; font-weight: 900; line-height: 1.6; margin: 0 0 10px; }
   .pillar p { margin: 0; color: var(--muted); font-size: 15px; }
 
@@ -300,6 +301,7 @@
     <div class="photo">
       <span class="cap">写真（仮）：忙しく働く、きれいめな服装の女性と男性</span>
       <span class="fig a"></span><span class="fig b"></span>
+      <img class="ph-img" src="../assets/lp/hero.jpg" alt="忙しく働く、きれいめな服装の女性と男性" loading="lazy" onerror="lpImgFallback(this)">
     </div>
     <div class="fv-chips">
       <span>毎週30分のオンライン面談</span>
@@ -324,21 +326,21 @@
     </div>
     <div class="scenes">
       <div class="scene">
-        <div class="photo"><span class="cap">写真（仮）</span><span class="fig"></span></div>
+        <div class="photo"><span class="cap">写真（仮）</span><span class="fig"></span><img class="ph-img" src="../assets/lp/scene-1.jpg" alt="仕事の合間の昼食" loading="lazy" onerror="lpImgFallback(this)"></div>
         <div class="body">
           <div class="tag"><b>1</b>忙しい日中</div>
           <p>自分のことはいつも後回し。そんな日にも、次の一手を用意しておく。</p>
         </div>
       </div>
       <div class="scene">
-        <div class="photo"><span class="cap">写真（仮）</span><span class="fig"></span></div>
+        <div class="photo"><span class="cap">写真（仮）</span><span class="fig"></span><img class="ph-img" src="../assets/lp/scene-2.jpg" alt="残業の日の夜" loading="lazy" onerror="lpImgFallback(this)"></div>
         <div class="body">
           <div class="tag"><b>2</b>残業続き</div>
           <p>遅い日が続く前提で、先に選び方まで整えておく。</p>
         </div>
       </div>
       <div class="scene">
-        <div class="photo"><span class="cap">写真（仮）</span><span class="fig"></span></div>
+        <div class="photo"><span class="cap">写真（仮）</span><span class="fig"></span><img class="ph-img" src="../assets/lp/scene-3.jpg" alt="予定のある週末" loading="lazy" onerror="lpImgFallback(this)"></div>
         <div class="body">
           <div class="tag"><b>3</b>予定のある週末</div>
           <p>予定がある週も、楽しむ前提で提案しておく。</p>
@@ -476,7 +478,7 @@
       <h2>完璧な毎日じゃなくていい。<br>あなたの現実から、<br>一緒に変えていく。</h2>
     </div>
     <div class="profile">
-      <div class="photo"><span class="cap">写真（仮）：担当者</span><span class="fig"></span></div>
+      <div class="photo"><span class="cap">写真（仮）：担当者</span><span class="fig"></span><img class="ph-img" src="../assets/lp/profile.jpg" alt="担当者" loading="lazy" onerror="lpImgFallback(this)"></div>
       <div>
         <ul class="roles"><li>栄養士</li><li>フルタイムの会社員</li><li>ボディメイク実践者</li></ul>
         <p>うまくいかなかった日も、まずは気持ちを受け止めます。そのうえで、栄養の知識をもとに、あなたの生活に合わせた次の一手を先回りして考えます。</p>
@@ -550,7 +552,7 @@
 
 <footer>
   <div class="wrap">
-    <p class="note">※本サービスは食生活の改善を支援するもので、医療行為・診断・治療ではありません。効果には個人差があります。<br>※このページはサービス設計用のたたき案です。写真・相談予約は準備中です。</p>
+    <p class="note">※本サービスは食生活の改善を支援するもので、医療行為・診断・治療ではありません。効果には個人差があります。<br>※写真はイメージです。<br>※このページはサービス設計用のたたき案です。相談予約は準備中です。</p>
     <p class="note">© BODY / RESET（仮称）</p>
   </div>
 </footer>
@@ -562,6 +564,12 @@
 </nav>
 
 <script>
+// 写真：assets/lp/ に .jpg → .png の順で探し、どちらもなければ仮の枠のまま
+function lpImgFallback(img) {
+  if (!img.dataset.tried) { img.dataset.tried = "1"; img.src = img.src.replace(/\.jpg$/, ".png"); }
+  else { img.remove(); }
+}
+
 // LINE公式アカウントの友だち追加URL。決まったらここに入れる（空のままだと「準備中」と表示）
 const LINE_URL = "";
 
