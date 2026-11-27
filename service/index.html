@@ -124,6 +124,7 @@
     font-size: 13px; font-weight: 700; padding: 6px 12px; border-left: 4px solid var(--teal); letter-spacing: .02em;
   }
   .fv-bottom { background: var(--white); padding: 20px 0 56px; text-align: center; }
+  .fv .who { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 10px; }
   .fv .sub { font-size: 16px; font-weight: 700; margin-bottom: 22px; }
 
   /* ---------- 2. 生活シーン（ティールの帯） ---------- */
@@ -183,6 +184,15 @@
   .goal { background: var(--teal-tint); padding: 20px 22px; margin-top: 24px; }
   .goal p { margin: 0; }
 
+  .incl { display: grid; gap: 14px; margin: 4px 0 20px; }
+  .incl-box { background: var(--white); padding: 20px 22px; border-top: 4px solid var(--teal); }
+  .incl-box.no { border-top-color: #9aa6aa; }
+  .incl-box h3 { font-size: 16px; font-weight: 900; margin: 0 0 8px; }
+  .incl-box ul { list-style: none; margin: 0; padding: 0; }
+  .incl-box li { position: relative; padding-left: 1.6em; font-size: 15px; line-height: 1.7; margin: 6px 0; }
+  .incl-box.yes li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 900; }
+  .incl-box.no li::before { content: "−"; position: absolute; left: 0; color: #7d898d; font-weight: 900; }
+  .incl-cta { margin-bottom: 28px; }
   details.steps { background: var(--white); border: 1px solid var(--line); padding: 16px 18px; }
   .timeline { position: relative; list-style: none; margin: 20px 0 0; padding: 0 0 0 28px; }
   .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
@@ -235,6 +245,12 @@
   .pre ol { margin: 8px 0 0; padding-left: 1.4em; }
   .final .btn-sub { display: block; text-align: center; font-size: 13px; color: var(--teal-soft); margin-top: 10px; }
 
+  .flow-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: st; }
+  .flow-steps li { position: relative; background: var(--white); padding: 18px 20px 18px 22px; border-left: 4px solid var(--teal); }
+  .flow-steps b { font-family: "Montserrat", sans-serif; font-size: 12px; color: var(--gold); letter-spacing: .12em; }
+  .flow-steps h3 { font-size: 17px; font-weight: 900; margin: 2px 0 4px; line-height: 1.6; }
+  .flow-steps p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .prep { display: inline-block; margin-left: 6px; font-size: 11px; font-weight: 700; color: #fff; background: #9aa6aa; padding: 0 6px; }
   footer { padding: 32px 0 40px; background: var(--mist); }
 
   /* ---------- 画面下に固定のボタン ---------- */
@@ -257,6 +273,7 @@
     .fv-visual { max-width: 960px; margin-left: auto; margin-right: auto; }
     h2 { font-size: 32px; }
     .pillars, .courses, .ways { grid-template-columns: repeat(3, 1fr); }
+    .incl { grid-template-columns: 1fr 1fr; }
     .scenes { grid-template-columns: repeat(3, 1fr); }
     .scene { grid-template-columns: 1fr; }
     .scene .photo { aspect-ratio: 4 / 3; }
@@ -311,6 +328,8 @@
   </div>
   <div class="fv-bottom">
     <div class="wrap">
+      <!-- 提案（未承認）：誰向け・何のサービスかを一文で（2026-11-27 ブラッシュアップ） -->
+      <p class="who">仕事や家庭を優先して、自分のことを後回しにしてきた方へ。<br>毎週のオンライン面談とLINEで、食事から整えるボディメイクです。</p>
       <p class="sub">期間は1・2・3か月から選べます。</p>
       <a class="btn cta-line" href="#">無料で自分に合う方法を相談する</a>
     </div>
@@ -454,6 +473,27 @@
         <p>見た目や服の着心地の変化を確かめながら、サポートが終わっても続けられる状態を目指します。</p>
       </div>
     </div>
+    <!-- 含まれるもの／含まれないもの：決定事項だけを書く（2026-11-27） -->
+    <div class="incl">
+      <div class="incl-box yes">
+        <h3>どのコースにも含まれるもの</h3>
+        <ul>
+          <li>毎週30分のオンライン面談</li>
+          <li>LINEでの相談と、予定に合わせた先回りの提案</li>
+          <li>翌週の予定に合わせた、食事と行動の計画づくり</li>
+        </ul>
+      </div>
+      <div class="incl-box no">
+        <h3>含まれないもの</h3>
+        <ul>
+          <li>医療行為・診断・治療</li>
+          <li>毎日の食事写真のチェックや、毎日の返信のお約束</li>
+          <li>24時間いつでもの対応（LINEの対応曜日・返信の目安は準備中）</li>
+        </ul>
+      </div>
+    </div>
+    <a class="btn cta-line incl-cta" href="#">無料相談で、自分に合う期間を決める</a>
+
     <details class="steps">
       <summary>3か月コースの進み方（例）</summary>
       <ol class="timeline">
@@ -519,7 +559,27 @@
     <details class="qa"><summary>運動はしなくてもいいですか？</summary><p>まずは食事から整えます。運動を無理に取り入れる必要はありません。</p></details>
     <details class="qa"><summary>男性でも申し込めますか？</summary><p>はい。性別や年齢に関係なく、身体を整えたい方ならどなたでもご相談いただけます。</p></details>
     <details class="qa"><summary>何度もダイエットに失敗しています。それでも大丈夫ですか？</summary><p>はい。「また続かなかった」と自分を責める必要はありません。仕事や家庭を優先して、自分のことを後回しにしてきた方こそ、今の生活に合うやり方を一緒に探しましょう。</p></details>
+    <details class="qa"><summary>支払い方法は何がありますか？</summary><p>準備中です。決まりしだい、このページに掲載します。</p></details>
+    <details class="qa"><summary>途中でやめることはできますか？返金はありますか？</summary><p>途中解約・返金の扱いは準備中です。決まりしだい、このページに掲載します。</p></details>
+    <details class="qa"><summary>LINEの返信はどのくらいで来ますか？</summary><p>LINEの対応曜日・返信の目安は準備中です。決まりしだい、このページに掲載します。</p></details>
     <details class="qa"><summary>必ず変化しますか？</summary><p>変化には個人差があり、効果を保証するものではありません。また、医療的な診断や治療を行うサービスではありません。</p></details>
+  </div>
+</section>
+
+<!-- ===== 開始までの流れ（docs/lp-current-direction.md 3. の導線） ===== -->
+<section class="mist">
+  <div class="wrap">
+    <div class="head">
+      <div class="en">STEPS</div>
+      <h2>はじめるまでの流れ</h2>
+    </div>
+    <ol class="flow-steps">
+      <li><b>STEP 1</b><h3>無料の食事クセ診断（任意）</h3><p>18問・約3分。今の食べ方のクセを知るところから。</p></li>
+      <li><b>STEP 2</b><h3>LINEで友だち追加</h3><p>無料相談の予約もLINEから。<span class="prep">準備中</span></p></li>
+      <li><b>STEP 3</b><h3>無料個別相談（30分・オンライン）</h3><p>目指したい姿と今の生活を整理し、最初の一歩をお持ち帰りいただきます。</p></li>
+      <li><b>STEP 4</b><h3>コースを選んでお申し込み</h3><p>1・2・3か月から、あなたに合う期間を選べます。</p></li>
+      <li><b>STEP 5</b><h3>毎週の面談とLINEで伴走スタート</h3><p>あなたの予定に合わせて、一緒に整えていきます。</p></li>
+    </ol>
   </div>
 </section>
 
@@ -553,6 +613,7 @@
 <footer>
   <div class="wrap">
     <p class="note">※本サービスは食生活の改善を支援するもので、医療行為・診断・治療ではありません。効果には個人差があります。<br>※写真はイメージです。<br>※このページはサービス設計用のたたき案です。相談予約は準備中です。</p>
+    <p class="note">特定商取引法に基づく表記（準備中）／プライバシーポリシー（準備中）</p>
     <p class="note">© BODY / RESET（仮称）</p>
   </div>
 </footer>
