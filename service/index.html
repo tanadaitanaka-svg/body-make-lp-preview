@@ -107,14 +107,18 @@
   header .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; max-width: 1100px; }
   .logo { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .12em; color: var(--teal); }
   .logo small { font-family: "Noto Sans JP", sans-serif; font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+  .head-link[aria-disabled="true"] { color: #8b9699; border-color: #c4ccce; background: none !important; }
   .head-link { font-size: 13px; font-weight: 700; color: var(--teal); text-decoration: none; border: 1.5px solid var(--teal); border-radius: 4px; padding: 5px 12px; }
 
   /* ---------- 1. ファーストビュー ---------- */
   .fv { padding: 40px 0 0; background: linear-gradient(180deg, #dcf1ed 0%, #f2faf8 100%); overflow: hidden; }
-  .fv-copy { text-align: center; }
+  .fv-grid { display: grid; grid-template-areas: "copy" "visual" "chips" "bottom"; }
+  .fv-copy { grid-area: copy; text-align: center; padding: 0 20px; }
+  .fv-chips { grid-area: chips; }
+  .fv-bottom { grid-area: bottom; }
   .fv .label { display: inline-block; background: var(--teal); color: #fff; font-weight: 700; font-size: 15px; padding: 8px 18px; letter-spacing: .08em; }
-  .fv h1 { font-size: 38px; line-height: 1.45; font-weight: 900; margin: 18px 0 0; letter-spacing: .06em; }
-  .fv-visual { position: relative; margin-top: 32px; }
+  .fv h1 { font-size: 33px; line-height: 1.5; font-weight: 900; margin: 18px 0 0; letter-spacing: .06em; }
+  .fv-visual { grid-area: visual; position: relative; margin-top: 32px; }
   .fv .photo { aspect-ratio: 3 / 2; }  /* 生成画像は横3:縦2。女性と男性の顔が切れないよう全体を見せる */
   .fv .photo .fig.a { left: 22%; }
   .fv .photo .fig.b { right: 22%; }
@@ -123,7 +127,7 @@
     display: block; background: var(--teal-tint); color: var(--teal-deep);
     font-size: 13px; font-weight: 700; padding: 6px 12px; border-left: 4px solid var(--teal); letter-spacing: .02em;
   }
-  .fv-bottom { background: var(--white); padding: 20px 0 56px; text-align: center; }
+  .fv-bottom { background: var(--white); padding: 20px 20px 56px; text-align: center; }
   .cta-micro { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
   .worries { padding: 64px 0 56px; }
   .worry-list { list-style: none; margin: 0 auto; padding: 0; max-width: 560px; display: grid; gap: 10px; }
@@ -289,8 +293,8 @@
   .sticky-cta .s-plan { border: 1.5px solid var(--ink); color: var(--ink); background: var(--white); }
 
   @media (min-width: 720px) {
-    .fv h1 { font-size: 54px; }
-    .fv-visual { max-width: 960px; margin-left: auto; margin-right: auto; }
+    .fv h1 { font-size: 46px; }
+    .fv-visual { max-width: 720px; margin-left: auto; margin-right: auto; }
     h2 { font-size: 32px; }
     .pillars, .courses, .ways { grid-template-columns: repeat(3, 1fr); }
     .incl { grid-template-columns: 1fr 1fr; }
@@ -300,7 +304,34 @@
     .profile { grid-template-columns: 300px 1fr; align-items: center; }
     .sticky-cta { max-width: 640px; margin: 0 auto; }
   }
+  /* PC（960px以上）：FVを2列に、全体の幅を広げる。文章のかたまりは読みやすい幅に */
+  @media (min-width: 960px) {
+    .wrap { max-width: 1080px; }
+    .fv { padding: 56px 0 64px; }
+    .fv-grid {
+      max-width: 1120px; margin: 0 auto; padding: 0 32px; column-gap: 48px; align-items: center;
+      grid-template-columns: 1fr 1.1fr; grid-template-areas: "copy visual" "chips visual" "bottom visual";
+    }
+    .fv-copy { text-align: left; padding: 0; align-self: end; }
+    .fv h1 { font-size: 48px; }
+    .fv-visual { margin: 0; max-width: none; }
+    .fv .photo { border-radius: 6px; }
+    .fv-chips { background: none; justify-content: flex-start; padding: 20px 0 0; }
+    .fv-bottom { background: none; text-align: left; padding: 20px 0 0; align-self: start; }
+    .fv-bottom .btn { margin: 0; }
+    h2 { font-size: 34px; }
+    #courses .wrap > p, #courses .terms, #courses .goal, #courses details.steps, .incl-cta,
+    .narrow .wrap { max-width: 820px; margin-left: auto; margin-right: auto; }
+    .lead { max-width: 760px; margin-left: auto; margin-right: auto; }
+  }
 </style>
+<script>
+// 写真：assets/lp/ に .jpg → .png の順で探し、どちらもなければ仮の枠のまま
+function lpImgFallback(img) {
+  if (!img.dataset.tried) { img.dataset.tried = "1"; img.src = img.src.replace(/\.jpg$/, ".png"); }
+  else { img.remove(); }
+}
+</script>
 
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="googlebot" content="noindex, nofollow, noarchive">
@@ -324,30 +355,31 @@
 <header>
   <div class="wrap">
     <div class="logo">BODY / RESET <small>（仮）</small></div>
-    <a class="head-link" href="#consult">無料相談</a>
+    <a class="head-link cta-line" data-off="無料相談（準備中）" href="#">無料相談</a>
   </div>
 </header>
 
 <!-- ===== 1. ファーストビュー ===== -->
+<!-- スマホ：見出し→写真→ラベル→説明・ボタン。PC（960px以上）：左に文字、右に写真 -->
 <section class="fv">
-  <div class="wrap fv-copy">
-    <span class="label">生活に合わせて整えるボディメイク</span>
-    <h1>忙しい毎日も<br>好きな自分で<br>いたい</h1>
-  </div>
-  <div class="fv-visual">
-    <div class="photo">
-      <span class="cap">写真（仮）：忙しく働く、きれいめな服装の女性と男性</span>
-      <span class="fig a"></span><span class="fig b"></span>
-      <img class="ph-img" src="../assets/lp/hero.jpg" alt="忙しく働く、きれいめな服装の女性と男性" loading="lazy" onerror="lpImgFallback(this)">
+  <div class="fv-grid">
+    <div class="fv-copy">
+      <span class="label">生活に合わせて整えるボディメイク</span>
+      <h1>忙しい毎日も<br>好きな自分でいたい</h1>
+    </div>
+    <div class="fv-visual">
+      <div class="photo">
+        <span class="cap">写真（仮）：忙しく働く、きれいめな服装の女性と男性</span>
+        <span class="fig a"></span><span class="fig b"></span>
+        <img class="ph-img" src="../assets/lp/hero.jpg" alt="忙しく働く、きれいめな服装の女性と男性" loading="lazy" onerror="lpImgFallback(this)">
+      </div>
     </div>
     <div class="fv-chips">
       <span>毎週30分のオンライン面談</span>
       <span>LINEで日々の相談</span>
       <span>1・2・3か月から選べる</span>
     </div>
-  </div>
-  <div class="fv-bottom">
-    <div class="wrap">
+    <div class="fv-bottom">
       <!-- 提案（未承認）：誰向け・何のサービスかを一文で（2026-11-27 ブラッシュアップ） -->
       <p class="who">仕事や家庭を優先して、自分のことを後回しにしてきた方へ。<br>毎週のオンライン面談とLINEで、食事から整えるボディメイクです。</p>
       <p class="sub">期間は1・2・3か月から選べます。</p>
@@ -508,18 +540,18 @@
       </div>
       <div class="course recommend">
         <span class="badge">おすすめ</span>
-        <div class="len">3<small>か月</small></div>
-        <div class="price">53,400<small>円（税込）</small><span class="pm">（月あたり 17,800円）</span></div>
-        <div class="monitor">初期モニター5名限定　26,700円</div>
-        <h3>変化を確かめ<br>自分の習慣にする</h3>
-        <p>見た目や服の着心地の変化を確かめながら、サポートが終わっても続けられる状態を目指します。</p>
-      </div>
-      <div class="course">
         <div class="len">2<small>か月</small></div>
         <div class="price">37,800<small>円（税込）</small><span class="pm">（月あたり 18,900円）</span></div>
         <div class="monitor">初期モニター5名限定　18,800円</div>
         <h3>実践しながら<br>自分に合う形に整える</h3>
         <p>外食や仕事の波の中で実践し、うまくいかなかったことも材料にして調整します。</p>
+      </div>
+      <div class="course">
+        <div class="len">3<small>か月</small></div>
+        <div class="price">53,400<small>円（税込）</small><span class="pm">（月あたり 17,800円）</span></div>
+        <div class="monitor">初期モニター5名限定　26,700円</div>
+        <h3>変化を確かめ<br>自分の習慣にする</h3>
+        <p>見た目や服の着心地の変化を確かめながら、サポートが終わっても続けられる状態を目指します。</p>
       </div>
     </div>
     <!-- 含まれるもの／含まれないもの：決定事項だけを書く（2026-11-27） -->
@@ -588,7 +620,7 @@
 </section>
 
 <!-- ===== 7. 事例 ===== -->
-<section class="mist">
+<section class="mist narrow">
   <div class="wrap">
     <div class="head">
       <div class="en">STORIES</div>
@@ -602,14 +634,14 @@
 </section>
 
 <!-- ===== よくある質問 ===== -->
-<section>
+<section class="narrow">
   <div class="wrap">
     <div class="head">
       <div class="en">FAQ</div>
       <h2>よくある質問</h2>
     </div>
     <details class="qa"><summary>毎日、食事の写真を送らないといけませんか？</summary><p>いいえ、毎日の提出は必須ではありません。迷ったときや相談したいときにLINEで送ってください。</p></details>
-    <details class="qa"><summary>どのプランを選べばいいですか？</summary><p>1か月・2か月・3か月から選べます。見た目の変化を確かめながら習慣にしたい方には3か月をおすすめしています。無料相談で、あなたに合う期間を一緒に考えます。</p></details>
+    <details class="qa"><summary>どのプランを選べばいいですか？</summary><p>1か月・2か月・3か月から選べます。おすすめは2か月です。無料相談で、あなたに合う期間を一緒に考えます。</p></details>
     <details class="qa"><summary>面談はどこで受けますか？</summary><p>オンラインで、毎週30分です。ご自宅や職場など、落ち着いて話せる場所からご参加いただけます。</p></details>
     <details class="qa"><summary>外食やコンビニが多くても大丈夫ですか？</summary><p>はい。外食や中食が多い生活を前提に、選び方を一緒に考えます。</p></details>
     <details class="qa"><summary>運動はしなくてもいいですか？</summary><p>まずは食事から整えます。運動を無理に取り入れる必要はありません。</p></details>
@@ -623,7 +655,7 @@
 </section>
 
 <!-- ===== 開始までの流れ（docs/lp-current-direction.md 3. の導線） ===== -->
-<section class="mist">
+<section class="mist narrow">
   <div class="wrap">
     <div class="head">
       <div class="en">STEPS</div>
@@ -640,7 +672,7 @@
 </section>
 
 <!-- ===== 8. 無料個別相談 ===== -->
-<section class="final" id="consult">
+<section class="final narrow" id="consult">
   <div class="wrap">
     <div class="head">
       <div class="en">FREE CONSULTATION</div>
@@ -681,11 +713,6 @@
 </nav>
 
 <script>
-// 写真：assets/lp/ に .jpg → .png の順で探し、どちらもなければ仮の枠のまま
-function lpImgFallback(img) {
-  if (!img.dataset.tried) { img.dataset.tried = "1"; img.src = img.src.replace(/\.jpg$/, ".png"); }
-  else { img.remove(); }
-}
 
 // LINE公式アカウントの友だち追加URL。決まったらここに入れる（空のままだと「準備中」と表示）
 const LINE_URL = "";
@@ -697,7 +724,7 @@ document.querySelectorAll(".cta-line").forEach((a) => {
     a.rel = "noopener";
   } else {
     a.setAttribute("aria-disabled", "true");
-    a.textContent = a.dataset.short ? "LINE受付は準備中" : "LINEの受付は準備中です";
+    a.textContent = a.dataset.off || (a.dataset.short ? "LINE受付は準備中" : "LINEの受付は準備中です");
   }
 });
 </script>

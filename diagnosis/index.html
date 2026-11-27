@@ -62,6 +62,9 @@
   .hero h1 { font-size: 32px; line-height: 1.5; margin: 18px 0 16px; font-weight: 900; letter-spacing: .06em; }
   .hero h1 span { color: var(--sage); }
   .hero p { color: var(--muted); margin: 0 0 28px; }
+  .hero-photo { margin: 0 -20px 24px; }
+  .hero-photo img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+  @media (min-width: 600px) { .hero-photo { margin: 0 0 24px; } }
   .chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
   .chip { background: var(--sage-soft); border-left: 4px solid var(--sage); padding: 4px 12px; font-size: 13px; font-weight: 700; color: var(--sage-deep); }
   .card { background: var(--surface); border-top: 4px solid var(--sage); padding: 24px 22px; margin-bottom: 16px; }
@@ -122,6 +125,13 @@
     .hero h1 { font-size: 36px; }
   }
 </style>
+<script>
+// 写真：.jpg → .png の順で探し、どちらもなければ枠ごと消す
+function dgImgFallback(img) {
+  if (!img.dataset.tried) { img.dataset.tried = "1"; img.src = img.src.replace(/\.jpg$/, ".png"); }
+  else { img.closest("figure").remove(); }
+}
+</script>
 
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="googlebot" content="noindex, nofollow, noarchive">
@@ -151,6 +161,8 @@
       <div class="en">FOOD / SELF DISCOVERY</div>
       <span class="tag">無料の食事クセ診断</span>
       <h1>あなたがまだ気づいていない<br><span>食事のクセ</span></h1>
+      <!-- 写真：assets/lp/diagnosis-hero.jpg（なければ .png）。どちらもなければ枠ごと消す -->
+      <figure class="hero-photo"><img src="../assets/lp/diagnosis-hero.jpg" alt="忙しく働く、きれいめな服装の女性と男性" onerror="dgImgFallback(this)"></figure>
       <p>忙しい毎日の食べ方を、6つの視点で見える化。<br>まずは「自分のクセ」を知るところから。</p>
       <div class="chips"><span class="chip">全18問</span><span class="chip">約3分</span><span class="chip">無料</span><span class="chip">登録なしで結果表示</span></div>
       <button class="btn" id="start-btn">無料で診断をはじめる</button>
