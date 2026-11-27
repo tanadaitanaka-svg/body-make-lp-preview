@@ -62,6 +62,7 @@
   .hero h1 { font-size: 32px; line-height: 1.5; margin: 18px 0 16px; font-weight: 900; letter-spacing: .06em; }
   .hero h1 span { color: var(--sage); }
   .hero p { color: var(--muted); margin: 0 0 28px; }
+  .nw { display: inline-block; }
   .hero-photo { margin: 0 -20px 24px; }
   .hero-photo img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
   @media (min-width: 600px) { .hero-photo { margin: 0 0 24px; } }
@@ -163,7 +164,7 @@ function dgImgFallback(img) {
       <h1>あなたがまだ気づいていない<br><span>食事のクセ</span></h1>
       <!-- 写真：assets/lp/diagnosis-hero.jpg（なければ .png）。どちらもなければ枠ごと消す -->
       <figure class="hero-photo"><img src="../assets/lp/diagnosis-hero.jpg" alt="忙しく働く、きれいめな服装の女性と男性" onerror="dgImgFallback(this)"></figure>
-      <p>忙しい毎日の食べ方を、6つの視点で見える化。<br>まずは「自分のクセ」を知るところから。</p>
+      <p><span class="nw">忙しい毎日の食べ方を、</span><span class="nw">6つの視点で見える化。</span><br>まずは「自分のクセ」を知るところから。</p>
       <div class="chips"><span class="chip">全18問</span><span class="chip">約3分</span><span class="chip">無料</span><span class="chip">登録なしで結果表示</span></div>
       <button class="btn" id="start-btn">無料で診断をはじめる</button>
     </div>
