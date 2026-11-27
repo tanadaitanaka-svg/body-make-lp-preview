@@ -172,6 +172,15 @@
   .flow30 { list-style: none; padding: 0; margin: 14px 0 0; display: inline-grid; gap: 6px; text-align: left; }
   .flow30 li { display: grid; grid-template-columns: 3.4em 1fr; gap: 8px; font-size: 15px; }
   .flow30 b { font-family: "Montserrat", sans-serif; color: var(--teal-soft); }
+  .chat { background: #e9eef0; color: var(--ink); padding: 20px 14px 16px; margin: 36px auto 0; max-width: 520px; border-radius: 8px; }
+  .chat-title { text-align: center; font-weight: 900; font-size: 15px; margin: 0 0 14px; color: var(--teal-deep); }
+  .msg { display: flex; align-items: flex-start; gap: 8px; margin: 0 0 10px; }
+  .msg p { margin: 0; padding: 10px 13px; font-size: 14px; line-height: 1.7; border-radius: 14px; max-width: 80%; }
+  .msg.coach p { background: #fff; border-top-left-radius: 4px; }
+  .msg.you { justify-content: flex-end; }
+  .msg.you p { background: #8de08a; border-top-right-radius: 4px; }
+  .who-l { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 11px; font-weight: 700; display: grid; place-items: center; }
+  .chat-note { font-size: 11px; color: var(--muted); margin: 8px 0 0; text-align: center; }
   .dark .note { color: #b9c3c6; text-align: center; margin-top: 16px; }
 
   /* ---------- 5. コース ---------- */
@@ -190,6 +199,11 @@
   .goal { background: var(--teal-tint); padding: 20px 22px; margin-top: 24px; }
   .goal p { margin: 0; }
 
+  .terms { margin: 16px 0 0; background: var(--white); border: 1px solid var(--line); }
+  .terms div { display: grid; grid-template-columns: 7.5em 1fr; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .terms div:last-child { border-bottom: 0; }
+  .terms dt { font-weight: 700; font-size: 14px; color: var(--teal-deep); }
+  .terms dd { margin: 0; font-size: 14px; line-height: 1.7; }
   .incl { display: grid; gap: 14px; margin: 4px 0 20px; }
   .incl-box { background: var(--white); padding: 20px 22px; border-top: 4px solid var(--teal); }
   .incl-box.no { border-top-color: #9aa6aa; }
@@ -461,7 +475,17 @@
         <li><b>5分</b><span>次の小さな一手を決める</span></li>
       </ul>
     </div>
-    <p class="note">※LINEの対応曜日・返信の目安は準備中です。</p>
+    <!-- LINEのやりとり例：仮の例文（2026-11-27 ユーザー指示）。実際の運用に合わせて見直す -->
+    <div class="chat">
+      <p class="chat-title">LINEのやりとり（イメージ）</p>
+      <div class="msg coach"><span class="who-l">担当</span><p>来週は出張が続く週でしたね。駅や空港でも選びやすいものを、先に3つ送っておきますね。</p></div>
+      <div class="msg you"><p>助かります！実は明日、急に会食も入ってしまって…。せっかく続いていたのに、どうしよう。</p></div>
+      <div class="msg coach"><span class="who-l">担当</span><p>教えてくれてありがとうございます。朝ごはん、今週も続けられていてすごいです。会食は楽しんで大丈夫。ひとつだけ、最初の一口は野菜かお刺身などから始めてみましょう。</p></div>
+      <div class="msg you"><p>それならできそうです。</p></div>
+      <div class="msg coach"><span class="who-l">担当</span><p>次の日の朝は、いつもどおりで大丈夫です。どうだったか、週の面談で聞かせてくださいね。</p></div>
+      <p class="chat-note">※やりとりはイメージです。内容は、あなたの生活や目標に合わせて変わります。</p>
+    </div>
+    <p class="note">※LINEのご相談には、原則24時間以内に返信します。</p>
   </div>
 </section>
 
@@ -504,7 +528,7 @@
         <h3>どのコースにも含まれるもの</h3>
         <ul>
           <li>毎週30分のオンライン面談</li>
-          <li>LINEでの相談と、予定に合わせた先回りの提案</li>
+          <li>LINEでの相談（原則24時間以内に返信）と、予定に合わせた先回りの提案</li>
           <li>翌週の予定に合わせた、食事と行動の計画づくり</li>
         </ul>
       </div>
@@ -513,7 +537,7 @@
         <ul>
           <li>医療行為・診断・治療</li>
           <li>毎日の食事写真のチェックや、毎日の返信のお約束</li>
-          <li>24時間いつでもの対応（LINEの対応曜日・返信の目安は準備中）</li>
+          <li>LINEでの即時の返信のお約束（返信は原則24時間以内）</li>
         </ul>
       </div>
     </div>
@@ -531,7 +555,14 @@
     <div class="goal">
       <p><strong>目指すのは、毎日の中で好きな服が似合う身体。</strong><br>結婚式や同窓会などのイベントがある方は、その日から逆算して進め方を考えます。</p>
     </div>
-    <p class="note" style="margin-top:12px">※変化の時期や大きさには個人差があり、特定の時期の変化を保証するものではありません。料金は税込です。初期モニター価格は、最初の5名さま限定の検証価格です。支払い方法・途中解約の扱いは準備中です。</p>
+    <p class="note" style="margin-top:12px">※変化の時期や大きさには個人差があり、特定の時期の変化を保証するものではありません。料金は税込です。初期モニター価格は、最初の5名さま限定の検証価格です。</p>
+    <!-- 入会金・支払い・解約返金：2026-11-27 ユーザー決定（解約・返金は競合で多かった内容に合わせた仮案。公開前に法務確認） -->
+    <dl class="terms">
+      <div><dt>入会金</dt><dd>0円</dd></div>
+      <div><dt>お支払い方法</dt><dd>クレジットカードのみ</dd></div>
+      <div><dt>途中解約</dt><dd>いつでもお申し出いただけます。お客様のご都合による途中解約では、お支払い済みの料金は返金できません。</dd></div>
+      <div><dt>返金</dt><dd>当方の都合でサポートを続けられなくなった場合は、残りの期間分を返金します。</dd></div>
+    </dl>
   </div>
 </section>
 
@@ -584,9 +615,9 @@
     <details class="qa"><summary>運動はしなくてもいいですか？</summary><p>まずは食事から整えます。運動を無理に取り入れる必要はありません。</p></details>
     <details class="qa"><summary>男性でも申し込めますか？</summary><p>はい。性別や年齢に関係なく、身体を整えたい方ならどなたでもご相談いただけます。</p></details>
     <details class="qa"><summary>何度もダイエットに失敗しています。それでも大丈夫ですか？</summary><p>はい。「また続かなかった」と自分を責める必要はありません。仕事や家庭を優先して、自分のことを後回しにしてきた方こそ、今の生活に合うやり方を一緒に探しましょう。</p></details>
-    <details class="qa"><summary>支払い方法は何がありますか？</summary><p>準備中です。決まりしだい、このページに掲載します。</p></details>
-    <details class="qa"><summary>途中でやめることはできますか？返金はありますか？</summary><p>途中解約・返金の扱いは準備中です。決まりしだい、このページに掲載します。</p></details>
-    <details class="qa"><summary>LINEの返信はどのくらいで来ますか？</summary><p>LINEの対応曜日・返信の目安は準備中です。決まりしだい、このページに掲載します。</p></details>
+    <details class="qa"><summary>支払い方法は何がありますか？</summary><p>クレジットカードのみです。入会金はかかりません。</p></details>
+    <details class="qa"><summary>途中でやめることはできますか？返金はありますか？</summary><p>途中解約はいつでもお申し出いただけます。お客様のご都合による途中解約では、お支払い済みの料金は返金できません。当方の都合でサポートを続けられなくなった場合は、残りの期間分を返金します。迷う方は、まず1か月コースからお試しください。</p></details>
+    <details class="qa"><summary>LINEの返信はどのくらいで来ますか？</summary><p>原則24時間以内に返信します。急ぎのときは、その旨を書き添えてください。</p></details>
     <details class="qa"><summary>必ず変化しますか？</summary><p>変化には個人差があり、効果を保証するものではありません。また、医療的な診断や治療を行うサービスではありません。</p></details>
   </div>
 </section>
