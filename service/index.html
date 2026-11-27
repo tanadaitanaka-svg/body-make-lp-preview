@@ -124,6 +124,12 @@
     font-size: 13px; font-weight: 700; padding: 6px 12px; border-left: 4px solid var(--teal); letter-spacing: .02em;
   }
   .fv-bottom { background: var(--white); padding: 20px 0 56px; text-align: center; }
+  .cta-micro { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+  .worries { padding: 64px 0 56px; }
+  .worry-list { list-style: none; margin: 0 auto; padding: 0; max-width: 560px; display: grid; gap: 10px; }
+  .worry-list li { position: relative; background: var(--mist); padding: 14px 16px 14px 48px; font-weight: 700; font-size: 15px; line-height: 1.7; }
+  .worry-list li::before { content: "✓"; position: absolute; left: 14px; top: 13px; width: 22px; height: 22px; display: grid; place-items: center; background: var(--teal); color: #fff; font-size: 13px; }
+  .worry-answer { text-align: center; font-weight: 900; font-size: 17px; line-height: 1.8; color: var(--teal-deep); margin: 28px 0 0; }
   .fv .who { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 10px; }
   .fv .sub { font-size: 16px; font-weight: 700; margin-bottom: 22px; }
 
@@ -332,7 +338,26 @@
       <p class="who">仕事や家庭を優先して、自分のことを後回しにしてきた方へ。<br>毎週のオンライン面談とLINEで、食事から整えるボディメイクです。</p>
       <p class="sub">期間は1・2・3か月から選べます。</p>
       <a class="btn cta-line" href="#">無料で自分に合う方法を相談する</a>
+      <p class="cta-micro">LINEの友だち追加は無料です</p>
     </div>
+  </div>
+</section>
+
+<!-- ===== 悩みの提示（提案・未承認のコピー。2026-11-27 競合比較：なおき・Runway・30.f・QDP が FV直後に悩みを列挙） ===== -->
+<section class="worries">
+  <div class="wrap">
+    <div class="head">
+      <div class="en">CHECK</div>
+      <h2>こんなこと、ありませんか？</h2>
+    </div>
+    <ul class="worry-list">
+      <li>仕事や家庭を優先して、自分のことはいつも後回し</li>
+      <li>残業や外食が続くと、食事が乱れてしまう</li>
+      <li>何をどう食べればいいのか、もう分からない</li>
+      <li>「また続かなかった」と、自分を責めてしまう</li>
+      <li>前は似合っていた服が、しっくりこなくなってきた</li>
+    </ul>
+    <p class="worry-answer">ひとつでも当てはまったら、<br>今の生活のままで、できることから一緒に始めましょう。</p>
   </div>
 </section>
 
